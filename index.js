@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port =  process.env.PORT || 3000;
 const path = require("path");
 let ejs = require('ejs');
 
-// app.use(express.static(path.join(__dirname, "public")));
 
 
 
@@ -16,12 +15,12 @@ app.get("/", (req, res) => {
 
 
 app.get("/about", (req, res) => {
-  res.render('about' , {data : {aboutText: "This is my about text"}})
+  res.render('about' , {data : {aboutText: "This is my about text", appName: "Express Js"}})
 });
 
 
 app.get("/:name", (req, res) => {
-  res.render('params' , {data : {param: req.params.name}})
+  res.render('params' , {data : {param: req.params.name,appName: "Express Js"},})
 });
 
 app.listen(port, () => {
